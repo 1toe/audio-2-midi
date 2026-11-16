@@ -2,8 +2,10 @@
 
 ## Sin versionar
 
-## 0.3.0
+## 0.3.0 · 2026-11-15
 
+- Commit de producción: [`39ac69b37ed406d8f1be6bb188ccb4910c9a0376`](https://github.com/1toe/audio-a-midi/commit/39ac69b37ed406d8f1be6bb188ccb4910c9a0376).
+- Referencia: [`release/v0.3.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.3.0).
 - Etapas de conversión, porcentaje, tiempo transcurrido y aviso al recargar durante el trabajo.
 - Errores con instrucciones para reintentar y recuperación si el Worker deja de responder.
 - Menos copias al preparar el audio y empaquetar las predicciones. La medición comparativa se sigue en T1.33.
