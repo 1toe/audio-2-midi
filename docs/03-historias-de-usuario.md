@@ -33,7 +33,7 @@ Como usuario, quiero subir un audio arrastrándolo o eligiéndolo desde mi equip
 Como usuario, quiero indicar si mi audio es un track solo o una canción completa, para que el sistema lo procese del modo correcto.
 
 - Dado un audio cargado, cuando todavía no elijo, entonces track solo viene marcado.
-- Dado que estamos en la fase 1, cuando miro el selector, entonces canción completa aparece como próximamente y no se puede elegir.
+- Dado un MVP que solo incluye la fase 1, canción completa se muestra como próximamente. En `v0.1.0`, que integra la fase 2, el selector permite canción completa y pide consentimiento antes del envío.
 - Dado un audio cargado, cuando cambio la opción antes de convertir, entonces el sistema usa la opción nueva.
 
 ### H3 · Transcribir a notas

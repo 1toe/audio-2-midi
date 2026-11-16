@@ -1,16 +1,17 @@
 # Reglas de trabajo
 
-Trabaja en `dev` o en una rama de tarea que salga de `dev`. Mantén el plan de producto, los identificadores de historias `H1–H11` y los de tareas `Tn.m` como referencias del trabajo. El audio en modo pista aislada se procesa en el navegador. Si agregas una dependencia, anota su licencia en [registro-licencias.md](registro-licencias.md).
+Trabaja en `dev` o en una rama de tarea que parta de `dev`. Cualquier cambio en `main` o en una referencia `release/*` requiere autorización explícita de Walter. Conserva las referencias de versiones ya fijadas.
 
-## Seguimiento y versión
+Mantén los cambios acotados y usa los identificadores existentes de historias (`Hn`) y tareas (`Tn.m`). En modo pista aislada el audio se procesa en el navegador. Antes de agregar una dependencia directa, registra su versión y su licencia en [registro-licencias.md](registro-licencias.md).
 
-1. Antes de editar, comprueba la rama y su SHA en GitHub. Lee el [registro de avances](docs/registro-avances.md) y ubica las historias y tareas afectadas en [backlog](backlog/).
-2. Implementa un cambio acotado. En el backlog marca las tareas de código que realizaste y deja los checks pendientes hasta reunir evidencia. En el CSV usa `Por hacer`, `En curso`, `Implementada / por validar`, `Validada` o `Bloqueada`. Reserva la columna del commit para el SHA completo del cambio que implementa la historia.
-3. Actualiza [CHANGELOG.md](CHANGELOG.md) para cambios que afecten la versión. Usa `Sin versionar` hasta fijar una versión SemVer. Al fijarla, alinea la versión web y la API, y registra el SHA completo, su permalink y la referencia de GitHub que apunta a él. Las referencias de versiones publicadas se conservan.
-4. Tras subir el cambio, confirma que el SHA existe en GitHub y que la rama apunta a la revisión esperada. Añade una fila al registro con fecha de Chile, versión si aplica, alcance y pendientes. Si el SHA aún no existe al preparar los archivos, enlázalo en un commit posterior que actualice las referencias del registro, el backlog o el changelog. Ese commit queda cubierto por el historial de Git.
-5. En el cierre indica rama, SHA corto con link al SHA completo y estado de validación. Las ramas de versión y los enlaces a commits permiten reproducir una revisión. El nombre de `dev` por sí solo identifica una rama móvil.
+## Flujo de cada cambio
 
-## Validación y entrega actual
+1. **Antes de editar.** Comprueba en GitHub el SHA completo de la rama de trabajo. Lee el [registro de avances](docs/registro-avances.md), consulta el [backlog](backlog/) y ubica los ID del cambio. Incluye esos ID en el commit cuando correspondan.
+2. **Al implementar.** Marca las tareas de código realizadas y actualiza la historia a `Implementada / por validar`. Usa también `Por hacer`, `En curso`, `Validada` o `Bloqueada` según corresponda. En [backlog.csv](backlog/backlog.csv) registra el SHA de implementación y, cuando exista, el enlace a la evidencia de aceptación.
+3. **Al verificar en GitHub.** Confirma que la rama apunta al SHA esperado. Enlaza cada avance con el SHA completo de 40 caracteres y su enlace directo al commit. Una rama identifica dónde buscar y el SHA identifica qué revisión usar. El registro indica fecha de Chile, alcance, versión si aplica y pendientes. Si el SHA se conoce después de crear el commit, añádelo en un commit de seguimiento. Git conserva el historial de ese commit de seguimiento.
+4. **Al versionar.** Mantén los cambios pendientes en `Sin versionar` del [changelog](CHANGELOG.md). Al fijar una versión SemVer, alinea la versión de la web y la API y registra su SHA junto con el tag o la rama de versión verificada. Un despliegue debe registrar el ambiente y el SHA exacto desplegado.
+5. **Al cerrar.** Indica rama, SHA corto enlazado al commit completo, estado del backlog y validación pendiente. Marca `Validada` solo cuando exista evidencia de los [checks de calidad](docs/06-checks-y-calidad.md) para el SHA probado.
 
-- Para `v0.1.0`, el desarrollo de las fases 1 a 3 se adelantó y la aceptación se verifica con los [checks de calidad](docs/06-checks-y-calidad.md) al final. Usa los checks para decidir si una fase queda validada.
-- Walter se encarga de la compilación, la prueba con audios y el despliegue a Vercel en esta entrega. Las instrucciones locales se mantienen para Windows con PowerShell y sin Docker. Documentación e interfaz en español.
+## Entrega actual
+
+La implementación de las fases 1 a 3 de `v0.1.0` se adelantó y la aceptación se verifica en conjunto. Walter se encarga de la compilación, las pruebas con audio y el despliegue a Vercel. Las instrucciones locales usan Windows con PowerShell, sin Docker. Mantén la documentación y la interfaz en español.

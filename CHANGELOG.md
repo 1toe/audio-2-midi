@@ -2,6 +2,8 @@
 
 ## Sin versionar
 
+- Claude Code importa las reglas compartidas desde `AGENTS.md`. El backlog registra el SHA de implementación y el enlace a la evidencia de aceptación.
+- Registro de licencias alineado con las dependencias directas de la web y el servidor.
 - Flujo de seguimiento con commits verificables, estado de historias y reglas compartidas para los agentes. [Registro de avances](docs/registro-avances.md).
 
 ## 0.1.0 · 2026-11-15

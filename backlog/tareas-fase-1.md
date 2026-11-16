@@ -7,7 +7,7 @@ Objetivo: que CU-01, CU-02 y CU-03 funcionen de punta a punta para un track solo
 ## Base del proyecto
 
 - [x] T1.1 Crear el proyecto web en `web/` con Vite y TypeScript.
-- [ ] T1.2 Revisar las licencias de las dependencias fijadas en `web/package.json` y completar `registro-licencias.md`.
+- [x] T1.2 Registrar la versión y licencia del código de las dependencias de `web/package.json`. La licencia de los pesos se sigue en `registro-licencias.md`.
 - [ ] T1.3 Compilar la web y comprobar su despliegue en Vercel.
 
 ## H1 · Subir un audio
@@ -55,6 +55,7 @@ Objetivo: que CU-01, CU-02 y CU-03 funcionen de punta a punta para un track solo
 - [ ] T1.26 Probar un audio de 10 minutos en un teléfono Android.
 - [ ] T1.27 Probar en Chrome y Edge de escritorio y en Chrome de Android.
 - [ ] T1.28 Revisar la definición de terminado de `docs/06-checks-y-calidad.md` para H1 a H6.
+- [ ] T1.29 Guardar el `package-lock.json` al instalar la web para poder resolver las mismas dependencias indirectas en los siguientes despliegues.
 
 ## Puerta 2
 
