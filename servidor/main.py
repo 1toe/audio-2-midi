@@ -75,7 +75,7 @@ async def lifespan(app: FastAPI):
             await asyncio.gather(*tasks, return_exceptions=True)
 
 
-app = FastAPI(title="Audio a MIDI", version="0.1.0", lifespan=lifespan)
+app = FastAPI(title="Audio a MIDI", version="0.2.0", lifespan=lifespan)
 origins = [origin.strip().rstrip("/") for origin in getenv("FRONTEND_ORIGIN", "").split(",") if origin.strip()]
 if origins:
     app.add_middleware(

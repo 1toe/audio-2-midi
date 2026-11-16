@@ -4,9 +4,9 @@ Aplicación web que convierte cualquier audio en un archivo MIDI que suena como 
 
 Plan al 15 de noviembre de 2026. Autor: Walter Cataldo.
 
-## Ejecutar la versión 0.1.0
+## Ejecutar la versión 0.2.0
 
-Usa la rama [`release/v0.1.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.1.0) para reproducir esta versión. Usa `dev` para seguir desarrollando. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
+Usa la rama [`release/v0.2.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.2.0) para reproducir esta versión. Usa `dev` para seguir desarrollando. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -19,7 +19,7 @@ En otra terminal, inicia la web y abre <http://localhost:5173>:
 
 ```powershell
 cd web
-npm install
+npm ci
 npm run dev
 ```
 

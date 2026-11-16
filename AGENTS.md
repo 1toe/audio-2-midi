@@ -18,4 +18,4 @@ Usa la identidad de GitHub `1toe` para ramas, commits y PR en [`1toe/audio-a-mid
 
 ## Entrega actual
 
-La implementación de las fases 1 a 3 de `v0.1.0` se adelantó y la aceptación se verifica en conjunto. Walter se encarga de la compilación, las pruebas con audio y el despliegue a Vercel. Las instrucciones locales usan Windows con PowerShell, sin Docker. Mantén la documentación y la interfaz en español.
+La implementación de las fases 1 a 3 de `v0.1.0` se adelantó y la aceptación se verifica en conjunto. Verifica la compilación y el flujo correspondiente al SHA que se despliega. Registra el resultado junto al ambiente y la URL. Las instrucciones locales usan Windows con PowerShell, sin Docker. Mantén la documentación y la interfaz en español.
