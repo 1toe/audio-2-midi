@@ -21,7 +21,7 @@ flowchart TD
 
 ## Puertas
 
-Cada puerta puede detener o recortar el plan.
+Las puertas son criterios de aceptación. Para `v0.1.0` se adelantó la implementación de las fases 1 a 3 y su validación se realizará en conjunto. Consulta el [estado del backlog](../backlog/) y registra la evidencia contra el [commit de la versión](registro-avances.md).
 
 | Puerta | Pregunta | Si no se cumple |
 | --- | --- | --- |

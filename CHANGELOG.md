@@ -1,6 +1,14 @@
 # Historial de versiones
 
-## 0.1.0
+## Sin versionar
+
+- Flujo de seguimiento con commits verificables, estado de historias y reglas compartidas para los agentes. [Registro de avances](docs/registro-avances.md).
+
+## 0.1.0 · 2026-11-15
+
+- Commit de la versión: [`389145b`](https://github.com/walter-cataldo/audio-a-midi/commit/389145bf7903ec98728d9a2b2d4e2eda919ec012) (`389145bf7903ec98728d9a2b2d4e2eda919ec012`).
+- Referencia GitHub: rama [`release/v0.1.0`](https://github.com/walter-cataldo/audio-a-midi/tree/release/v0.1.0).
+- Estado: implementación disponible en el repositorio, con compilación, validación con audios y despliegue pendientes.
 
 - Conversión de pistas aisladas a MIDI con Basic Pitch en el navegador.
 - Separación de canciones con Demucs y selección de voz, bajo y resto.
