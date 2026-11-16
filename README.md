@@ -4,9 +4,9 @@ Aplicación web que convierte cualquier audio en un archivo MIDI que suena como 
 
 Plan al 15 de noviembre de 2026. Autor: Walter Cataldo.
 
-## Ejecutar la versión 0.2.0
+## Ejecutar la versión 0.4.0
 
-Usa la rama [`release/v0.2.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.2.0) para reproducir esta versión. Usa `dev` para seguir desarrollando. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
+Usa la rama [`release/v0.4.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.4.0) para reproducir esta versión. Usa `dev` para seguir desarrollando. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -40,7 +40,7 @@ Para evaluar los MIDI con el set de prueba, sigue la [guía de fase 0](fase-0/RE
 
 ## Seguimiento del desarrollo
 
-La [web de producción](https://audio-a-midi.vercel.app/) corresponde a `v0.2.0`, commit [`0387b9dce03483ba353c3d979a2794705f335b98`](https://github.com/1toe/audio-a-midi/commit/0387b9dce03483ba353c3d979a2794705f335b98). Consulta el [registro de avances](docs/registro-avances.md) para retomar desde un commit exacto, el [backlog](backlog/) para ver qué falta y las [reglas de trabajo](AGENTS.md) para registrar el próximo cambio.
+La [web de producción](https://audio-a-midi.vercel.app/) corresponde a `v0.4.0`, commit [`3d70e29c3b0f15feb80877f0d1ea44e6a6428b9e`](https://github.com/1toe/audio-a-midi/commit/3d70e29c3b0f15feb80877f0d1ea44e6a6428b9e). Consulta el [registro de avances](docs/registro-avances.md) para retomar desde un commit exacto, el [backlog](backlog/) para ver qué falta y las [reglas de trabajo](AGENTS.md) para registrar el próximo cambio.
 
 ## Qué hay en esta carpeta
 
