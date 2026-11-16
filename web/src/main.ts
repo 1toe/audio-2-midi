@@ -1,5 +1,5 @@
 import './style.css'
-import { discardJob, downloadStem, separate } from './api'
+import { canSeparate, discardJob, downloadStem, separate } from './api'
 import { readDuration } from './audio'
 import { formatTime, message, stems, type Settings, type Stem, type Track } from './model'
 import { el, ResultView, showStems } from './view'
@@ -7,6 +7,9 @@ import { PitchSession } from './session'
 
 const fileInput = el<HTMLInputElement>('file')
 const consent = el<HTMLInputElement>('consent')
+const songMode = el<HTMLInputElement>('song-mode')
+songMode.disabled = !canSeparate
+el('song-unavailable').hidden = canSeparate
 const convert = el<HTMLButtonElement>('convert')
 const cancel = el<HTMLButtonElement>('cancel')
 const transcribe = el<HTMLButtonElement>('transcribe')

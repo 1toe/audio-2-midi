@@ -1,7 +1,7 @@
 ﻿ID;Historia;Prioridad;Fase;Caso de uso;Criterio de aceptación;Estado;Commit de implementación;Evidencia de validación
 H1;Subir un audio arrastrándolo o eligiéndolo;Imprescindible;1;CU-01;Acepta MP3, WAV, M4A, OGG y FLAC. Si no puede leerlo o supera 10 minutos, lo dice con un mensaje claro.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
-H2;Indicar si es track solo o canción completa;Imprescindible;1;CU-01;Selector visible antes de procesar. Track solo viene marcado. En la versión que integra fase 2 se puede elegir canción completa con consentimiento.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
-H3;Transcribir el audio a notas;Imprescindible;1;CU-01;Muestra el avance y la pestaña no se congela.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
+H2;Indicar si es track solo o canción completa;Imprescindible;1;CU-01;Selector visible antes de procesar. Pista aislada viene marcada. Canción completa requiere el servicio de separación y el consentimiento para enviar el audio.;Implementada / por validar;f987ce4937c62fe165fa99d4cc5a5395281be34d;
+H3;Transcribir el audio a notas;Imprescindible;1;CU-01;Muestra el avance y la pestaña no se congela.;Implementada / por validar;f987ce4937c62fe165fa99d4cc5a5395281be34d;
 H4;Escuchar el resultado con sonido de piano;Imprescindible;1;CU-02;Tiene reproducir y pausar, y permite alternar con el audio original.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
 H5;Descargar el archivo .mid;Imprescindible;1;CU-03;El archivo abre y suena en dos programas MIDI distintos.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
 H6;Privacidad del audio;Imprescindible;1;CU-01 y CU-04;En modo navegador el audio no sale del equipo. En servidor se borra a más tardar 1 hora después.;Implementada / por validar;a8b2a4e21ee96a948f2bb0daa89864b17026a19f;
