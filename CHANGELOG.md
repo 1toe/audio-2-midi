@@ -2,6 +2,10 @@
 
 ## Sin versionar
 
+## 0.2.0 · 2026-11-15
+
+- Referencia GitHub: rama [`release/v0.2.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.2.0).
+- Instalación reproducible de la web con `package-lock.json` y `npm ci`.
 - Preparación de la web para Vercel bajo `1toe`. El modo canción completa se habilita al configurar el servicio de separación.
 - La transcripción puede reintentar la carga del modelo después de un fallo de red.
 - El botón Cancelar detiene la carga o la separación de una canción. Al cambiar de audio o modo, se solicita eliminar las pistas temporales.
