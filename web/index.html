@@ -53,9 +53,27 @@
         </div>
         <label for="position">Posición <output id="clock"></output></label>
         <input type="range" id="position" min="0" max="0" step=".01" value="0">
+        <label for="roll-mode">Vista MIDI</label>
+        <select id="roll-mode">
+          <option value="falling">Teclado con notas descendentes</option>
+          <option value="timeline">Línea de tiempo</option>
+        </select>
         <canvas id="roll" aria-label="Piano roll de las notas, ordenadas por tiempo y altura"></canvas>
+        <div id="timeline-controls" hidden>
         <label for="roll-start">Ver notas desde <output id="roll-clock"></output></label>
         <input type="range" id="roll-start" min="0" max="0" step=".1" value="0">
+        </div>
+        <details id="guitar-tab">
+          <summary>Tablatura de guitarra</summary>
+          <p>Mi estándar, 24 trastes. Cada columna indica un inicio de nota o acorde y su tiempo en segundos. Las columnas tienen ancho fijo.</p>
+          <div class="actions">
+            <label for="tab-track">Pista MIDI</label>
+            <select id="tab-track"></select>
+            <button id="tab-download" type="button">Descargar tablatura</button>
+          </div>
+          <p id="tab-status" role="status"></p>
+          <pre id="tab-preview" tabindex="0" aria-label="Tablatura de guitarra"></pre>
+        </details>
         <details>
           <summary>Ajustar transcripción</summary>
           <form id="settings">

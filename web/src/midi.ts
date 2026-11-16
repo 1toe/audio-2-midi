@@ -1,9 +1,8 @@
 import { writeMidi, type MidiEvent } from 'midi-file'
-import { stems, type Stem, type Track } from './model'
+import { midiPpq, midiTick, stems, type Stem, type Track } from './model'
 
 export function downloadMidi(name: string, tracks: Track[], bpm: number, duration: number) {
-  const ppq = 480
-  const ticks = (seconds: number) => Math.round(seconds * ppq * bpm / 60)
+  const ticks = (seconds: number) => midiTick(seconds, bpm)
   const tempo: MidiEvent[] = [
     { deltaTime: 0, type: 'setTempo', microsecondsPerBeat: Math.round(60000000 / bpm) },
     { deltaTime: 0, type: 'endOfTrack' },
@@ -31,7 +30,7 @@ export function downloadMidi(name: string, tracks: Track[], bpm: number, duratio
     part.push({ deltaTime: Math.max(0, ticks(duration) - previous), type: 'endOfTrack' })
     return part
   })
-  const data = new Uint8Array(writeMidi({ header: { format: 1, numTracks: parts.length + 1, ticksPerBeat: ppq }, tracks: [tempo, ...parts] }))
+  const data = new Uint8Array(writeMidi({ header: { format: 1, numTracks: parts.length + 1, ticksPerBeat: midiPpq }, tracks: [tempo, ...parts] }))
   const url = URL.createObjectURL(new Blob([data], { type: 'audio/midi' }))
   const link = document.createElement('a')
   link.href = url

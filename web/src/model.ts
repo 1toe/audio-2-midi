@@ -20,3 +20,6 @@ export type WorkerReply =
 export const stems: Record<Stem, string> = { vocals: 'Voz', bass: 'Bajo', other: 'Resto' }
 export const message = (error: unknown) => error instanceof Error ? error.message : String(error)
 export const formatTime = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`
+
+export const midiPpq = 480
+export const midiTick = (seconds: number, bpm: number) => Math.round(seconds * midiPpq * bpm / 60)

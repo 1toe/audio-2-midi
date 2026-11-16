@@ -27,3 +27,37 @@ export function drawRoll(canvas: HTMLCanvasElement, notes: Note[], start: number
 }
 
 export const rollSpan = (duration: number) => Math.min(span, duration)
+
+export function drawFallingRoll(canvas: HTMLCanvasElement, notes: Note[], time: number) {
+  const width = Math.max(1, Math.round(canvas.clientWidth * devicePixelRatio))
+  const height = Math.max(1, Math.round(canvas.clientHeight * devicePixelRatio))
+  if (canvas.width !== width) canvas.width = width
+  if (canvas.height !== height) canvas.height = height
+  const ctx = canvas.getContext('2d')!
+  const floor = height * .89
+  const span = 4
+  const key = width / 88
+  const dark = [1, 3, 6, 8, 10]
+  const isDark = (pitch: number) => dark.includes(pitch % 12)
+  ctx.fillStyle = '#101713'
+  ctx.fillRect(0, 0, width, height)
+  for (let pitch = 21; pitch <= 108; pitch++) {
+    const x = (pitch - 21) * key
+    ctx.fillStyle = isDark(pitch) ? '#17251f' : '#23342b'
+    ctx.fillRect(x, 0, key - .5, floor)
+    ctx.fillStyle = isDark(pitch) ? '#101713' : '#e8f2ed'
+    ctx.fillRect(x, floor, key - .5, height - floor)
+  }
+  for (const note of notes) {
+    if (note.time > time + span) break
+    if (note.time + note.duration <= time || note.pitch < 21 || note.pitch > 108) continue
+    const x = (note.pitch - 21) * key
+    const top = Math.max(0, floor - (note.time + note.duration - time) * floor / span)
+    const end = Math.min(floor, floor - (note.time - time) * floor / span)
+    ctx.fillStyle = note.time <= time ? '#ffd180' : '#a9e7bf'
+    ctx.fillRect(x, top, Math.max(1, key - .5), Math.max(1, end - top))
+    if (note.time <= time) ctx.fillRect(x, floor, Math.max(1, key - .5), height - floor)
+  }
+  ctx.fillStyle = '#ffd180'
+  ctx.fillRect(0, floor - 1, width, 1)
+}
