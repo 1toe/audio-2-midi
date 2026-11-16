@@ -40,7 +40,7 @@ Para evaluar los MIDI con el set de prueba, sigue la [guía de fase 0](fase-0/RE
 
 ## Seguimiento del desarrollo
 
-La revisión de `v0.1.0` corresponde a [`389145b`](https://github.com/1toe/audio-a-midi/commit/389145bf7903ec98728d9a2b2d4e2eda919ec012). Consulta el [registro de avances](docs/registro-avances.md) para retomar desde un commit exacto, el [backlog](backlog/) para ver qué falta y las [reglas de trabajo](AGENTS.md) para registrar el próximo cambio.
+La [web de producción](https://audio-a-midi.vercel.app/) corresponde a `v0.2.0`, commit [`0387b9dce03483ba353c3d979a2794705f335b98`](https://github.com/1toe/audio-a-midi/commit/0387b9dce03483ba353c3d979a2794705f335b98). Consulta el [registro de avances](docs/registro-avances.md) para retomar desde un commit exacto, el [backlog](backlog/) para ver qué falta y las [reglas de trabajo](AGENTS.md) para registrar el próximo cambio.
 
 ## Qué hay en esta carpeta
 

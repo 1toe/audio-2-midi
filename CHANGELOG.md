@@ -4,6 +4,8 @@
 
 ## 0.2.0 · 2026-11-15
 
+- Commit de producción: [`0387b9dce03483ba353c3d979a2794705f335b98`](https://github.com/1toe/audio-a-midi/commit/0387b9dce03483ba353c3d979a2794705f335b98).
+- [Producción](https://audio-a-midi.vercel.app/) verificada con la portada, el manifiesto de Basic Pitch y los pesos en HTTP 200. La conversión con audio queda por validar.
 - Referencia GitHub: rama [`release/v0.2.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.2.0).
 - Instalación reproducible de la web con `package-lock.json` y `npm ci`.
 - Preparación de la web para Vercel bajo `1toe`. El modo canción completa se habilita al configurar el servicio de separación.
