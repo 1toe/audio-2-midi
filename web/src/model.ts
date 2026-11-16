@@ -13,6 +13,7 @@ export type WorkerRequest =
   | { id: number; type: 'notes'; keys: string[]; settings: Settings; duration: number }
 export type WorkerReply =
   | { id: number; progress: number }
+  | { id: number; stage: 'model' | 'analysis' }
   | { id: number; tracks?: Track[]; bpm?: number }
   | { id: number; error: string }
 

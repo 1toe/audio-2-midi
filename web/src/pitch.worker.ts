@@ -11,8 +11,15 @@ const chunk = rate * 15
 const overlap = rate / 2
 let pitch: BasicPitch | undefined
 
-async function evaluate(samples: Float32Array, report: (value: number) => void) {
+function pack(rows: number[][], width: number) {
+  const data = new Float32Array(rows.length * width)
+  rows.forEach((row, index) => data.set(row, index * width))
+  return data
+}
+
+async function evaluate(samples: Float32Array, report: (value: number) => void, stage: (value: 'model' | 'analysis') => void) {
   if (!pitch) {
+    stage('model')
     await tf.setBackend('cpu')
     const model = new BasicPitch(new URL(import.meta.env.BASE_URL + 'model/model.json', self.location.href).href)
     await model.model.catch(error => {
@@ -20,7 +27,9 @@ async function evaluate(samples: Float32Array, report: (value: number) => void) 
     })
     pitch = model
   }
+  stage('analysis')
   const segments: Segment[] = []
+  let lastUpdate = Number.NEGATIVE_INFINITY
   for (let start = 0; start < samples.length; start += chunk) {
     const offset = Math.max(0, start - overlap)
     const end = Math.min(samples.length, start + chunk)
@@ -30,17 +39,20 @@ async function evaluate(samples: Float32Array, report: (value: number) => void) 
     try {
       await pitch.evaluateModel(samples.subarray(offset, limit), (frames, onsets) => {
         if (!frames.length) return
-        segment.blocks.push({
-          frames: Float32Array.from(frames.flat()),
-          onsets: Float32Array.from(onsets.flat()),
-          width: frames[0].length,
-        })
-      }, value => report((start + value * (end - start)) / samples.length))
+        const width = frames[0].length
+        segment.blocks.push({ frames: pack(frames, width), onsets: pack(onsets, width), width })
+      }, value => {
+        const now = performance.now()
+        if (now - lastUpdate < 250) return
+        lastUpdate = now
+        report((start + Math.max(0, Math.min(1, value)) * (end - start)) / samples.length)
+      })
     } finally {
       tf.engine().endScope()
     }
     if (segment.blocks.length) segments.push(segment)
   }
+  report(1)
   return segments
 }
 
@@ -68,7 +80,7 @@ self.onmessage = async ({ data }: MessageEvent<WorkerRequest>) => {
   const { id } = data
   try {
     if (data.type === 'audio') {
-      predictions.set(data.key, await evaluate(data.samples, progress => self.postMessage({ id, progress })))
+      predictions.set(data.key, await evaluate(data.samples, progress => self.postMessage({ id, progress }), stage => self.postMessage({ id, stage })))
       self.postMessage({ id })
       return
     }

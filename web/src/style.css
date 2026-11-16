@@ -34,3 +34,6 @@ summary { cursor: pointer; }
 form { display: grid; gap: .5rem; margin-top: .7rem; }
 form input[type=number] { width: 6rem; margin-left: .4rem; }
 #status:empty, #file-info:empty { display: none; }
+
+#file-info, #status { overflow-wrap: anywhere; }
+#progress-text { font-size: .875rem; color: #b8c9bf; font-variant-numeric: tabular-nums; }

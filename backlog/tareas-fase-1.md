@@ -32,6 +32,10 @@ Objetivo: que CU-01, CU-02 y CU-03 funcionen de punta a punta para un track solo
 - [x] T1.14 Aviso cuando no se detectan notas.
 - [x] T1.15 Guardar la salida del modelo en memoria, para regenerar en la fase 3 sin correrlo de nuevo.
 
+- [x] T1.31 Mostrar etapas, avance y tiempo de conversión. Advertir al recargar durante un trabajo y permitir reintentar si el Worker deja de responder.
+- [x] T1.32 Reducir copias en preparación e inferencia.
+- [ ] T1.33 Medir v0.2.0 y v0.3.0 con el mismo audio y dispositivo. Registrar tiempos y comparar el MIDI, incluyendo el caso Android de 6:20.
+
 ## H4 · Escuchar con sonido de piano
 
 - [x] T1.16 Reproductor de las notas con piano sintetizado mediante Web Audio API.
