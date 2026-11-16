@@ -14,9 +14,12 @@ let pitch: BasicPitch | undefined
 async function evaluate(samples: Float32Array, report: (value: number) => void) {
   if (!pitch) {
     await tf.setBackend('cpu')
-    pitch = new BasicPitch(new URL(import.meta.env.BASE_URL + 'model/model.json', self.location.href).href)
+    const model = new BasicPitch(new URL(import.meta.env.BASE_URL + 'model/model.json', self.location.href).href)
+    await model.model.catch(error => {
+      throw new Error('No se pudo cargar el modelo de transcripción. Vuelve a intentarlo.', { cause: error })
+    })
+    pitch = model
   }
-  await pitch.model
   const segments: Segment[] = []
   for (let start = 0; start < samples.length; start += chunk) {
     const offset = Math.max(0, start - overlap)

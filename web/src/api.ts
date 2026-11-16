@@ -1,6 +1,8 @@
 import type { Stem } from './model'
 
-const api = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '') + '/api/jobs'
+const apiBase = (import.meta.env.VITE_API_URL ?? '').trim().replace(/\/+$/, '')
+const api = apiBase + '/api/jobs'
+export const canSeparate = import.meta.env.MODE !== 'vercel' || apiBase !== ''
 const unavailable = 'El servicio de separación no está disponible. Revisa su configuración o usa Pista aislada.'
 
 type Job = {
@@ -32,6 +34,7 @@ export async function discardJob(id: string) {
 
 export async function separate(file: File, signal: AbortSignal, onStatus: (job: Job) => void) {
   signal.throwIfAborted()
+  if (!canSeparate) throw new Error(unavailable)
   const id = Array.from(crypto.getRandomValues(new Uint8Array(16)), byte => byte.toString(16).padStart(2, '0')).join('')
   const cleanup = () => { void discardJob(id).catch(() => {}) }
   signal.addEventListener('abort', cleanup, { once: true })

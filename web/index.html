@@ -17,7 +17,8 @@
         <fieldset>
           <legend>Tipo de audio</legend>
           <label><input type="radio" name="mode" value="solo" checked> Pista aislada</label>
-          <label><input type="radio" name="mode" value="song"> Canción completa</label>
+          <label><input type="radio" id="song-mode" name="mode" value="song" disabled aria-describedby="song-unavailable"> Canción completa</label>
+          <small id="song-unavailable" hidden>La separación de canciones requiere un servidor configurado.</small>
         </fieldset>
         <p id="privacy">El audio se procesa en tu equipo y no se envía.</p>
         <label id="consent-row" hidden><input type="checkbox" id="consent"> Acepto enviar este audio para separar sus pistas.</label>

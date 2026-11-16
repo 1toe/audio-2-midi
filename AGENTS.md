@@ -12,6 +12,8 @@ Mantén los cambios acotados y usa los identificadores existentes de historias (
 4. **Al versionar.** Mantén los cambios pendientes en `Sin versionar` del [changelog](CHANGELOG.md). Al fijar una versión SemVer, alinea la versión de la web y la API y registra su SHA junto con el tag o la rama de versión verificada. Un despliegue debe registrar el ambiente y el SHA exacto desplegado.
 5. **Al cerrar.** Indica rama, SHA corto enlazado al commit completo, estado del backlog y validación pendiente. Marca `Validada` solo cuando exista evidencia de los [checks de calidad](docs/06-checks-y-calidad.md) para el SHA probado.
 
+Usa la identidad de GitHub `1toe` para ramas, commits y PR en [`1toe/audio-a-midi`](https://github.com/1toe/audio-a-midi). Abre los PR de tarea hacia `dev`, conserva `Co-Authored-By: Shannon` en los commits y verifica la autoría en GitHub. Guarda cualquier promoción a `main` para el PR autorizado de entrega.
+
 ## Entrega actual
 
 La implementación de las fases 1 a 3 de `v0.1.0` se adelantó y la aceptación se verifica en conjunto. Walter se encarga de la compilación, las pruebas con audio y el despliegue a Vercel. Las instrucciones locales usan Windows con PowerShell, sin Docker. Mantén la documentación y la interfaz en español.

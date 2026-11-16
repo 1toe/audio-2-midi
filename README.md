@@ -6,7 +6,7 @@ Plan al 15 de noviembre de 2026. Autor: Walter Cataldo.
 
 ## Ejecutar la versión 0.1.0
 
-Usa la rama [`release/v0.1.0`](https://github.com/walter-cataldo/audio-a-midi/tree/release/v0.1.0) para reproducir esta versión. Usa `dev` para seguir desarrollando. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
+Usa la rama [`release/v0.1.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.1.0) para reproducir esta versión. Usa `dev` para seguir desarrollando. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
 
 ```powershell
 py -3.11 -m venv .venv
@@ -27,7 +27,12 @@ La pista aislada se procesa en el navegador. El modo canción envía el archivo 
 
 ## Preparar la web para Vercel
 
-Selecciona `web` como directorio raíz del proyecto. Para usar el modo canción completa, define `VITE_API_URL` con la URL HTTPS del servidor Python y configura `FRONTEND_ORIGIN` en ese servidor con el origen HTTPS de la web. El servidor necesita FFmpeg y un proceso que siga activo para atender la cola entre peticiones. La conversión de pistas aisladas funciona desde la web por sí sola.
+1. Importa [`1toe/audio-a-midi`](https://github.com/1toe/audio-a-midi) en Vercel con la cuenta `1toe`. Selecciona `web` como directorio raíz y Node.js 22.x. [`web/vercel.json`](web/vercel.json) configura Vite, el comando de compilación y la salida `dist`.
+2. Usa la rama de tarea o `dev` para una vista previa. La rama `main` recibe la promoción de producción tras aprobar la vista previa. Registra el ambiente, la URL y el SHA completo al verificarla.
+3. Para habilitar **Canción completa**, configura `VITE_API_URL` en el ambiente de Vercel con la URL base HTTPS del servicio FastAPI y vuelve a desplegar. En el servidor, configura `FRONTEND_ORIGIN` con los orígenes HTTPS exactos de la web que usarán la API, separados por coma. FastAPI requiere un proceso persistente con FFmpeg para atender la cola. Si omites `VITE_API_URL`, la web ofrece conversión local de pistas aisladas.
+4. Para añadir un dominio que administres en Cloudflare, agrégalo primero en Vercel y aplica los registros que indique el proyecto en Cloudflare con **DNS only**. Vercel mantiene el HTTPS y sirve los archivos estáticos. Consulta la [guía de dominios en Cloudflare](https://vercel.com/kb/guide/migrate-to-vercel-from-cloudflare).
+
+En la vista previa, confirma que el Worker carga `model/model.json` y su archivo de pesos desde el sitio, que una pista aislada convierte y descarga un MIDI, y que el modo canción aparece deshabilitado si falta el servidor.
 
 El sonido de piano se sintetiza en el navegador. La cuantización estima el tempo a partir de los comienzos de las notas y usa 120 BPM cuando hay poca información. La compatibilidad de audio depende de los códecs del navegador.
 
@@ -35,7 +40,7 @@ Para evaluar los MIDI con el set de prueba, sigue la [guía de fase 0](fase-0/RE
 
 ## Seguimiento del desarrollo
 
-La revisión de `v0.1.0` corresponde a [`389145b`](https://github.com/walter-cataldo/audio-a-midi/commit/389145bf7903ec98728d9a2b2d4e2eda919ec012). Consulta el [registro de avances](docs/registro-avances.md) para retomar desde un commit exacto, el [backlog](backlog/) para ver qué falta y las [reglas de trabajo](AGENTS.md) para registrar el próximo cambio.
+La revisión de `v0.1.0` corresponde a [`389145b`](https://github.com/1toe/audio-a-midi/commit/389145bf7903ec98728d9a2b2d4e2eda919ec012). Consulta el [registro de avances](docs/registro-avances.md) para retomar desde un commit exacto, el [backlog](backlog/) para ver qué falta y las [reglas de trabajo](AGENTS.md) para registrar el próximo cambio.
 
 ## Qué hay en esta carpeta
 
