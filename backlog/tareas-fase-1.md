@@ -9,7 +9,7 @@ Objetivo: que CU-01, CU-02 y CU-03 funcionen de punta a punta para un track solo
 - [x] T1.1 Crear el proyecto web en `web/` con Vite y TypeScript.
 - [x] T1.2 Registrar la versión y licencia del código de las dependencias de `web/package.json`. La licencia de los pesos se sigue en `registro-licencias.md`.
 - [ ] T1.3 Compilar la web y comprobar su despliegue en Vercel.
-- [x] T1.30 Configurar la compilación para Vercel y dejar operativa la ruta de pista aislada cuando el servicio de canciones no esté configurado. La evidencia de compilación y vista previa se registra con T1.3.
+- [x] T1.30 Configurar la compilación para Vercel y dejar operativa la ruta de pista aislada cuando el servicio de canciones no esté configurado. Commit [`f987ce4`](https://github.com/1toe/audio-a-midi/commit/f987ce4937c62fe165fa99d4cc5a5395281be34d). La evidencia de compilación y vista previa se registra con T1.3.
 
 ## H1 · Subir un audio
 
