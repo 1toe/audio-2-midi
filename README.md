@@ -33,7 +33,7 @@ Plan al 15 de noviembre de 2026. Autor: Walter Cataldo.
 
 | Fase | Estado |
 | --- | --- |
-| 0 · Prueba de concepto | Por empezar |
+| 0 · Prueba de concepto | En curso: [conversión por lote](fase-0/README.md), evaluación pendiente |
 | 1 · MVP en navegador | Espera la puerta 1 |
 | 2 · Canción completa | Espera la puerta 2 |
 | 3 · Pulido | Espera la puerta 3 |

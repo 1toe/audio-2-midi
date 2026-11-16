@@ -6,7 +6,7 @@ Estado al 15 de noviembre de 2026. Verificada significa leída de la API de GitH
 
 | Dependencia | Uso | Fase | Licencia del código | Estado |
 | --- | --- | --- | --- | --- |
-| [Basic Pitch](https://github.com/spotify/basic-pitch) | Transcripción en Python | 0 | Apache-2.0 | Verificada |
+| [Basic Pitch 0.4.0](https://pypi.org/project/basic-pitch/0.4.0/) | Transcripción en Python | 0 | Apache-2.0 | Verificada |
 | [basic-pitch-ts](https://github.com/spotify/basic-pitch-ts) | Transcripción en el navegador | 1 | Apache-2.0 | Verificada |
 | [Transkun](https://github.com/Yujia-Yan/Transkun) | Alternativa para piano | Opcional | MIT | Verificada |
 | TensorFlow.js | Motor que usa basic-pitch-ts | 1 | Apache-2.0 | Por confirmar |

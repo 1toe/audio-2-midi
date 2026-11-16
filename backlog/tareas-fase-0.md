@@ -8,6 +8,7 @@ Objetivo: saber en 1 a 2 días si Basic Pitch da un MIDI reconocible con tracks 
 - [ ] T0.2 Reunir las 10 canciones completas de géneros distintos. Guardarlas en `fase-0/audios/canciones/`.
 - [ ] T0.3 Anotar los 20 archivos en `fase-0/puntajes.csv`.
 - [ ] T0.4 Instalar Basic Pitch en un entorno de Python.
+- [x] Preparar un script que convierta los WAV y registre duración, tiempo y errores.
 - [ ] T0.5 Correr Basic Pitch sobre los 10 tracks solos y medir el tiempo de cada uno.
 - [ ] T0.6 Escuchar cada MIDI y ponerle nota de 1 a 5 en `puntajes.csv`.
 - [ ] T0.7 Medir el tiempo de proceso de un audio de 4 minutos.
