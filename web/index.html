@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Convierte audio en notas MIDI y escucha el resultado con piano.">
+    <title>Audio a MIDI</title>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Audio a MIDI</h1>
+        <p>Convierte una pista o canción en notas que puedes escuchar y descargar.</p>
+      </header>
+      <section aria-labelledby="input-title">
+        <h2 id="input-title">Audio de entrada</h2>
+        <fieldset>
+          <legend>Tipo de audio</legend>
+          <label><input type="radio" name="mode" value="solo" checked> Pista aislada</label>
+          <label><input type="radio" name="mode" value="song"> Canción completa</label>
+        </fieldset>
+        <p id="privacy">El audio se procesa en tu equipo y no se envía.</p>
+        <label id="consent-row" hidden><input type="checkbox" id="consent"> Acepto enviar este audio para separar sus pistas.</label>
+        <div id="drop">
+          <label for="file">Elige o arrastra un archivo</label>
+          <input type="file" id="file" accept=".mp3,.wav,.m4a,.ogg,.flac">
+          <small>MP3, WAV, M4A, OGG o FLAC · hasta 10 minutos</small>
+        </div>
+        <p id="file-info" aria-live="polite"></p>
+        <div class="actions">
+          <button id="convert" disabled>Convertir</button>
+          <button id="cancel" hidden>Cancelar</button>
+        </div>
+        <progress id="progress" max="100" hidden aria-label="Avance de la conversión"></progress>
+        <p id="status" role="status" aria-live="polite"></p>
+      </section>
+      <section id="stems" hidden aria-labelledby="stems-title">
+        <h2 id="stems-title">Pistas separadas</h2>
+        <p>Escucha las pistas y marca las que quieres incluir.</p>
+        <div id="stem-list"></div>
+        <button id="transcribe" disabled>Convertir pistas seleccionadas</button>
+      </section>
+      <section id="result" hidden aria-labelledby="result-title">
+        <h2 id="result-title">Resultado</h2>
+        <div class="actions">
+          <button id="play">Reproducir</button>
+          <label for="source">Escuchar</label>
+          <select id="source"><option value="midi">MIDI con piano</option><option value="original">Audio original</option></select>
+          <button id="download">Descargar MIDI</button>
+          <a id="download-link" hidden>Guardar manualmente</a>
+        </div>
+        <label for="position">Posición <output id="clock"></output></label>
+        <input type="range" id="position" min="0" max="0" step=".01" value="0">
+        <canvas id="roll" aria-label="Piano roll de las notas, ordenadas por tiempo y altura"></canvas>
+        <label for="roll-start">Ver notas desde <output id="roll-clock"></output></label>
+        <input type="range" id="roll-start" min="0" max="0" step=".1" value="0">
+        <details>
+          <summary>Ajustar transcripción</summary>
+          <form id="settings">
+            <label>Umbral de notas <input type="number" name="threshold" min=".1" max=".9" step=".05" value=".5"></label>
+            <label>Duración mínima (ms) <input type="number" name="minimum" min="30" max="1000" step="10" value="130"></label>
+            <label><input type="checkbox" name="quantize"> Cuantizar al tempo estimado</label>
+            <label><input type="checkbox" name="limit"> Limitar a 88 teclas</label>
+            <label><input type="checkbox" name="merge"> Unir notas repetidas</label>
+            <div class="actions"><button id="regenerate" type="submit">Regenerar</button><button type="reset">Restablecer</button></div>
+          </form>
+        </details>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

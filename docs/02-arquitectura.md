@@ -12,8 +12,8 @@ flowchart TD
   S --> E["Elegir pistas<br/>voz, bajo o resto"]
   E --> T
   T --> L["Limpiar notas<br/>duración, rango y tempo"]
-  L --> P["Escuchar con piano<br/>Tone.js"]
-  L --> D["Descargar .mid<br/>@tonejs/midi"]
+  L --> P["Escuchar con piano<br/>Web Audio API"]
+  L --> D["Descargar .mid<br/>midi-file"]
 ```
 
 El paso de transcripción es el mismo en los dos modos. Lo único que cambia es qué audio recibe. Separar y elegir pistas solo existen desde la fase 2.
@@ -25,8 +25,8 @@ El paso de transcripción es el mismo en los dos modos. Lo único que cambia es 
 | [basic-pitch-ts](https://github.com/spotify/basic-pitch-ts) | Transcribe audio a notas | Navegador | Apache-2.0 |
 | [Basic Pitch](https://github.com/spotify/basic-pitch) | El mismo modelo en Python, para la fase 0 y como plan B | Servidor | Apache-2.0 |
 | [Demucs](https://github.com/adefossez/demucs) | Separa voz, bajo, batería y resto | Servidor | MIT, por confirmar |
-| [Tone.js](https://github.com/Tonejs/Tone.js) | Reproduce las notas con sonido de piano | Navegador | MIT, por confirmar |
-| [@tonejs/midi](https://github.com/Tonejs/Midi) | Escribe el archivo .mid | Navegador | MIT, por confirmar |
+| Web Audio API | Sintetiza y reproduce las notas | Navegador | API del navegador |
+| [midi-file](https://github.com/carter-thaxton/midi-file) | Escribe un MIDI con una pista por selección | Navegador | MIT |
 | [Transkun](https://github.com/Yujia-Yan/Transkun) | Motor alternativo, más preciso para piano | Servidor | MIT |
 
 Las licencias de Basic Pitch, basic-pitch-ts y Transkun vienen de la API de GitHub al 15 de noviembre de 2026. Las marcadas por confirmar son de memoria y se revisan antes de usarlas.
@@ -42,7 +42,7 @@ El stack es una propuesta. Se confirma al empezar cada fase.
 | 1 | Proyecto web | Vite con TypeScript, sitio estático |
 | 1 | Lectura de audio | Web Audio API, convertido a mono y 22.050 Hz |
 | 1 | Transcripción | basic-pitch-ts dentro de un Web Worker |
-| 1 | MIDI y sonido | @tonejs/midi y Tone.js |
+| 1 | MIDI y sonido | midi-file y Web Audio API |
 | 1 | Hosting | GitHub Pages o Vercel |
 | 2 | Servicio | Python con FastAPI y una cola de trabajos |
 | 2 | Separación | Demucs, con ffmpeg para convertir formatos |

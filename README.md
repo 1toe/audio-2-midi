@@ -4,12 +4,34 @@ Aplicación web que convierte cualquier audio en un archivo MIDI que suena como 
 
 Plan al 15 de noviembre de 2026. Autor: Walter Cataldo.
 
-## Por dónde empezar
+## Ejecutar la versión 0.1.0
 
-1. Lee `docs/01-plan-de-producto.md` (5 minutos).
-2. Cierra las decisiones de `docs/08-decisiones-abiertas.md`.
-3. Ejecuta la fase 0 siguiendo `fase-0/README.md`.
-4. Con la puerta 1 aprobada, sigue con `backlog/tareas-fase-1.md`.
+Clona la rama `dev`. Usa Node 22+, Python 3.11 y FFmpeg con `ffprobe` disponible en PATH. Desde la raíz, prepara el servidor:
+
+```powershell
+py -3.11 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.5.1 torchaudio==2.5.1
+.\.venv\Scripts\python.exe -m pip install -r servidor/requirements.txt
+.\.venv\Scripts\python.exe -m uvicorn servidor.main:app --no-access-log
+```
+
+En otra terminal, inicia la web y abre <http://localhost:5173>:
+
+```powershell
+cd web
+npm install
+npm run dev
+```
+
+La pista aislada se procesa en el navegador. El modo canción envía el archivo al servidor para separar sus pistas, las devuelve al navegador para transcribirlas y elimina los archivos temporales. El límite por archivo es de 10 minutos y 128 MiB. El servidor usa un solo proceso con una cola en memoria. Para alojarlo fuera de tu equipo, configura acceso, TLS y almacenamiento temporal que se limpie también al reiniciar.
+
+## Preparar la web para Vercel
+
+Selecciona `web` como directorio raíz del proyecto. Para usar el modo canción completa, define `VITE_API_URL` con la URL HTTPS del servidor Python y configura `FRONTEND_ORIGIN` en ese servidor con el origen HTTPS de la web. El servidor necesita FFmpeg y un proceso que siga activo para atender la cola entre peticiones. La conversión de pistas aisladas funciona desde la web por sí sola.
+
+El sonido de piano se sintetiza en el navegador. La cuantización estima el tempo a partir de los comienzos de las notas y usa 120 BPM cuando hay poca información. La compatibilidad de audio depende de los códecs del navegador.
+
+Para evaluar los MIDI con el set de prueba, sigue la [guía de fase 0](fase-0/README.md). Los cambios de la versión están en [CHANGELOG.md](CHANGELOG.md).
 
 ## Qué hay en esta carpeta
 
@@ -34,8 +56,8 @@ Plan al 15 de noviembre de 2026. Autor: Walter Cataldo.
 | Fase | Estado |
 | --- | --- |
 | 0 · Prueba de concepto | En curso: [conversión por lote](fase-0/README.md), evaluación pendiente |
-| 1 · MVP en navegador | Espera la puerta 1 |
-| 2 · Canción completa | Espera la puerta 2 |
-| 3 · Pulido | Espera la puerta 3 |
+| 1 · MVP en navegador | Implementado, validación con audio pendiente |
+| 2 · Canción completa | Implementado, validación con audio pendiente |
+| 3 · Pulido | Implementado, validación con audio pendiente |
 
 Los diagramas de `docs/` están en Mermaid. GitHub los muestra directo; en VS Code se ven con una extensión de vista previa de Mermaid.
