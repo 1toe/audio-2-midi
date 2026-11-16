@@ -1,15 +1,12 @@
 const sampleRate = 22050
 
 export async function decodeAudio(blob: Blob) {
-  const context = new AudioContext()
-  try {
-    return await context.decodeAudioData(await blob.arrayBuffer())
-  } finally {
-    await context.close()
-  }
+  const context = new OfflineAudioContext(1, 1, sampleRate)
+  return context.decodeAudioData(await blob.arrayBuffer())
 }
 
 export async function monoSamples(audio: AudioBuffer) {
+  if (audio.sampleRate === sampleRate && audio.numberOfChannels === 1) return audio.getChannelData(0)
   const length = Math.ceil(audio.duration * sampleRate)
   const context = new OfflineAudioContext(1, Math.max(1, length), sampleRate)
   const source = context.createBufferSource()
