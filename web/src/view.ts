@@ -2,7 +2,8 @@ import { stemUrl } from './api'
 import { downloadMidi } from './midi'
 import { formatTime, stems, type Stem, type Track } from './model'
 import { Player } from './player'
-import { drawRoll, rollSpan } from './roll'
+import { guitarTab } from './tablature'
+import { drawFallingRoll, drawRoll, rollSpan } from './roll'
 
 export const el = <T extends HTMLElement>(id: string) => document.getElementById(id) as T
 
@@ -34,6 +35,11 @@ export class ResultView {
   private link = el<HTMLAnchorElement>('download-link')
   private result = el('result')
   private notes: Track['notes'] = []
+  private rollMode = el<HTMLSelectElement>('roll-mode')
+  private tab = el<HTMLDetailsElement>('guitar-tab')
+  private tabTrack = el<HTMLSelectElement>('tab-track')
+  private tabDownload = el<HTMLButtonElement>('tab-download')
+  private tabRender?: () => void
   private pinned = false
   private lastPaint = ''
 
@@ -51,7 +57,18 @@ export class ResultView {
       void player.seek(this.position.valueAsNumber).catch(onError)
     }
     this.rollStart.oninput = () => { this.pinned = true }
+    const updateRollMode = () => {
+      const horizontal = this.rollMode.value === 'timeline'
+      el('timeline-controls').hidden = !horizontal
+      this.roll.style.cursor = horizontal ? 'crosshair' : 'default'
+      this.lastPaint = ''
+    }
+    this.rollMode.onchange = updateRollMode
+    updateRollMode()
+    this.tab.ontoggle = () => { if (this.tab.open) this.tabRender?.() }
+    this.tabTrack.onchange = () => this.tabRender?.()
     this.roll.onclick = event => {
+      if (this.rollMode.value !== 'timeline') return
       const rect = this.roll.getBoundingClientRect()
       const fraction = (event.clientX - rect.left) / rect.width
       void player.seek(this.rollStart.valueAsNumber + fraction * rollSpan(player.duration)).catch(onError)
@@ -62,6 +79,11 @@ export class ResultView {
   clear() {
     this.player.load('', 0, [])
     this.notes = []
+    this.tabRender = undefined
+    this.tabTrack.replaceChildren()
+    this.tabDownload.onclick = null
+    el('tab-preview').textContent = ''
+    el('tab-status').textContent = ''
     this.result.hidden = this.link.hidden = true
     el('download').onclick = null
   }
@@ -81,6 +103,24 @@ export class ResultView {
       this.link.download = input.file.name.replace(/\.[^.]+$/, '') + '.mid'
       this.link.hidden = false
     }
+    this.tabTrack.replaceChildren(...tracks.map(track => new Option(stems[track.id as Stem] ?? 'Pista aislada', track.id)))
+    this.tabRender = () => {
+      const track = tracks.find(item => item.id === this.tabTrack.value)
+      if (!track) return
+      const { text, missing } = guitarTab(track.notes, bpm)
+      el('tab-preview').textContent = text
+      el('tab-status').textContent = missing ? `${missing} de ${track.notes.length} notas no caben en la digitación. Siguen incluidas en el MIDI.` : `${track.notes.length} notas incluidas.`
+      this.tabDownload.onclick = () => {
+        const report = el('tab-status').textContent
+        const url = URL.createObjectURL(new Blob([`Guitarra · Mi estándar (E2 A2 D3 G3 B3 E4) · Segundos por columna\n${report}\n\n${text}\n`], { type: 'text/plain;charset=utf-8' }))
+        const link = document.createElement('a')
+        link.href = url
+        link.download = input.file.name.replace(/\.[^.]+$/, '') + '-' + track.id + '.txt'
+        link.click()
+        window.setTimeout(() => URL.revokeObjectURL(url), 60_000)
+      }
+    }
+    if (this.tab.open) this.tabRender()
     return this.notes.length
   }
 
@@ -102,7 +142,8 @@ export class ResultView {
     const view = [time, start, this.roll.clientWidth, this.roll.clientHeight].join('/')
     if (view !== this.lastPaint) {
       this.lastPaint = view
-      drawRoll(this.roll, this.notes, start, time, player.duration)
+      if (this.rollMode.value === 'timeline') drawRoll(this.roll, this.notes, start, time, player.duration)
+      else drawFallingRoll(this.roll, this.notes, time)
     }
   }
 }

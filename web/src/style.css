@@ -37,3 +37,6 @@ form input[type=number] { width: 6rem; margin-left: .4rem; }
 
 #file-info, #status { overflow-wrap: anywhere; }
 #progress-text { font-size: .875rem; color: #b8c9bf; font-variant-numeric: tabular-nums; }
+
+#roll { height: clamp(200px, 48vw, 320px); }
+#tab-preview { overflow: auto; max-height: 26rem; background: #101713; padding: .75rem; border-radius: .5rem; }

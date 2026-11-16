@@ -2,6 +2,9 @@
 
 ## Sin versionar
 
+- Teclado con notas descendentes sincronizado con el MIDI y vista de línea de tiempo.
+- Tablatura de guitarra por pista, con tiempos, descarga de texto y aviso de notas que no caben en la digitación.
+
 ## 0.3.0 · 2026-11-15
 
 - Commit de producción: [`39ac69b37ed406d8f1be6bb188ccb4910c9a0376`](https://github.com/1toe/audio-a-midi/commit/39ac69b37ed406d8f1be6bb188ccb4910c9a0376).

@@ -1,6 +1,6 @@
 # Tareas · Fase 3 · Pulido
 
-Implementación registrada en [`389145b`](https://github.com/walter-cataldo/audio-a-midi/commit/389145bf7903ec98728d9a2b2d4e2eda919ec012). Las casillas de código indican cambios presentes en GitHub. La aceptación sigue pendiente.
+Implementación registrada en [`389145b`](https://github.com/1toe/audio-a-midi/commit/389145bf7903ec98728d9a2b2d4e2eda919ec012). Las casillas de código indican cambios presentes en GitHub. La aceptación sigue pendiente.
 
 Objetivo: que CU-05 funcione y que CU-02 sume el piano roll. Duración estimada: 1 semana.
 
@@ -24,6 +24,10 @@ Objetivo: que CU-05 funcione y que CU-02 sume el piano roll. Duración estimada:
 - [x] T3.10 Dibujar las notas por tiempo y altura.
 - [x] T3.11 Cursor que avanza con la reproducción.
 - [x] T3.12 Tocar un punto mueve la reproducción a ese momento.
+
+- [x] T3.16 Añadir teclado animado con notas descendentes y conservar la línea de tiempo.
+- [x] T3.17 Generar tablatura por pista MIDI en afinación estándar y mostrar las notas que quedan fuera de la digitación.
+- [ ] T3.18 Comparar la tablatura con grabaciones y digitaciones de referencia, incluyendo acordes y arpegios.
 
 ## Cierre de la fase
 
