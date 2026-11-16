@@ -15,6 +15,7 @@ const cancel = el<HTMLButtonElement>('cancel')
 const transcribe = el<HTMLButtonElement>('transcribe')
 const status = el('status')
 const progress = el<HTMLProgressElement>('progress')
+const progressText = el('progress-text')
 const form = el<HTMLFormElement>('settings')
 const selection = el('stem-list')
 const view = new ResultView(error => { status.textContent = 'No se pudo reproducir: ' + message(error) })
@@ -27,11 +28,38 @@ let running: AbortController | undefined
 let loading = false
 let fileVersion = 0
 let mode = 'solo'
+let guarding = false
+let startedAt = 0
+let timer: number | undefined
+
+function warnBeforeReload(event: BeforeUnloadEvent) {
+  event.preventDefault()
+  event.returnValue = ''
+}
+
+function updateProgressText() {
+  const elapsed = formatTime((performance.now() - startedAt) / 1000)
+  const percent = progress.hasAttribute('value') ? ` · ${Math.floor(progress.value)} %` : ''
+  progressText.textContent = `Tiempo transcurrido ${elapsed}${percent}`
+}
+
+function stage(text: string, value?: number) {
+  status.textContent = text
+  progress.hidden = false
+  if (value === undefined) progress.removeAttribute('value')
+  else progress.value = value
+  updateProgressText()
+}
 
 const selected = () => Array.from(selection.querySelectorAll<HTMLInputElement>('input:checked'), input => input.value as Stem)
 
 function controls() {
   const busy = !!running || loading
+  if (busy !== guarding) {
+    guarding = busy
+    if (busy) window.addEventListener('beforeunload', warnBeforeReload)
+    else window.removeEventListener('beforeunload', warnBeforeReload)
+  }
   convert.disabled = busy || !source || (mode === 'song' && !consent.checked)
   transcribe.disabled = busy || selected().length === 0
   el<HTMLButtonElement>('regenerate').disabled = busy || !result
@@ -64,7 +92,9 @@ function stop() {
   running?.abort()
   running = undefined
   session.reset()
+  clearInterval(timer)
   progress.hidden = true
+  progressText.hidden = true
   controls()
 }
 
@@ -73,15 +103,20 @@ async function run(operation: (signal: AbortSignal) => Promise<void>) {
   const task = new AbortController()
   running = task
   controls()
-  status.textContent = ''
+  startedAt = performance.now()
+  progressText.hidden = false
+  stage('Preparando la conversión…')
+  timer = window.setInterval(updateProgressText, 1000)
   try {
     await operation(task.signal)
   } catch (error) {
-    if (!task.signal.aborted) status.textContent = message(error)
+    if (!task.signal.aborted) status.textContent = `No se pudo completar el trabajo. ${message(error)}`
   } finally {
     if (running === task) {
       running = undefined
+      clearInterval(timer)
       progress.hidden = true
+      updateProgressText()
       controls()
     }
   }
@@ -102,6 +137,7 @@ async function choose(file?: File) {
   let url = ''
   try {
     if (!/\.(mp3|wav|m4a|ogg|flac)$/i.test(file.name)) throw new Error('Elige un archivo MP3, WAV, M4A, OGG o FLAC.')
+    if (file.size === 0) throw new Error('El archivo está vacío. Elige otro audio.')
     if (file.size > 128 * 1024 ** 2) throw new Error('El archivo supera el límite de 128 MiB.')
     url = URL.createObjectURL(file)
     const duration = await readDuration(url)
@@ -140,16 +176,22 @@ async function produce(keys: string[], signal: AbortSignal) {
   for (let index = 0; index < keys.length; index++) {
     const key = keys[index]
     if (session.has(key)) continue
-    status.textContent = `Convirtiendo ${stems[key as Stem] ?? 'el audio'}…`
-    progress.hidden = false
-    progress.value = index / keys.length * 100
+    const track = stems[key as Stem] ?? 'Audio'
+    const stages = {
+      decode: 'Decodificando el archivo',
+      mix: 'Preparando el audio para el modelo',
+      model: 'Cargando el modelo de transcripción',
+      analysis: 'Detectando notas',
+    }
+    if (activeJob) stage(`${track} · Descargando la pista…`)
     const audio = activeJob ? await downloadStem(activeJob, key as Stem, signal) : input.file
     signal.throwIfAborted()
     await session.transcribe(key, audio, signal, fraction => {
       progress.value = (index + fraction) / keys.length * 100
-    })
+      updateProgressText()
+    }, step => stage(`${track} · ${stages[step]}…`, step === 'analysis' ? index / keys.length * 100 : undefined))
   }
-  status.textContent = 'Preparando las notas…'
+  stage('Organizando las notas para el MIDI…')
   const next = await session.notes(keys, settings(), input.duration)
   signal.throwIfAborted()
   const empty = next.tracks.filter(track => !track.notes.length)
@@ -198,9 +240,9 @@ convert.onclick = () => void run(async signal => {
   if (!consent.checked) return
   clearResult()
   controls()
-  status.textContent = 'Enviando el audio para separar las pistas…'
+  stage('Enviando el audio para separar las pistas…')
   const job = await separate(source.file, signal, update => {
-    status.textContent = `${update.status === 'queued' ? 'En cola' : 'Separando pistas'} · estimación: ${Math.round((update.estimate_seconds ?? 60) / 60)} min`
+    stage(`${update.status === 'queued' ? 'En cola' : 'Separando pistas'} · estimación: ${Math.round((update.estimate_seconds ?? 60) / 60)} min`)
   })
   signal.throwIfAborted()
   jobId = job.id
