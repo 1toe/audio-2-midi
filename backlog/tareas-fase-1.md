@@ -60,7 +60,7 @@ Objetivo: que CU-01, CU-02 y CU-03 funcionen de punta a punta para un track solo
 - [ ] T1.26 Probar un audio de 10 minutos en un teléfono Android.
 - [ ] T1.27 Probar en Chrome y Edge de escritorio y en Chrome de Android.
 - [ ] T1.28 Revisar la definición de terminado de `docs/06-checks-y-calidad.md` para H1 a H6.
-- [x] T1.29 Guardar el `package-lock.json` al instalar la web para poder resolver las mismas dependencias indirectas en los siguientes despliegues.
+- [x] T1.29 Guardar el `package-lock.json` para instalaciones reproducibles con `npm ci`. El [diagnóstico de Vercel](https://github.com/1toe/audio-a-midi/commit/758915ad67fc366a5e98bef74c52db6d5ea9367f) está cerrado.
 
 ## Puerta 2
 

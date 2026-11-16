@@ -2,12 +2,15 @@
 
 ## Sin versionar
 
+- Documentación alineada con la entrega `v0.4.0` y sus validaciones pendientes.
+
 ## 0.4.0 · 2026-11-16
 
 - Commit de producción: [`3d70e29c3b0f15feb80877f0d1ea44e6a6428b9e`](https://github.com/1toe/audio-a-midi/commit/3d70e29c3b0f15feb80877f0d1ea44e6a6428b9e).
 - Referencia: [`release/v0.4.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.4.0).
 - Teclado con notas descendentes sincronizado con el MIDI y vista de línea de tiempo.
 - Tablatura de guitarra por pista, con tiempos, descarga de texto y aviso de notas que no caben en la digitación.
+- Producción verificada en Vercel. La conversión y la digitación con audio real siguen pendientes en el backlog.
 
 ## 0.3.0 · 2026-11-15
 

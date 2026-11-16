@@ -16,6 +16,8 @@ Usa `git cherry-pick -x <SHA>` si solo necesitas trasladar commits puntuales ent
 
 Usa la identidad de GitHub `1toe` para ramas, commits y PR en [`1toe/audio-a-midi`](https://github.com/1toe/audio-a-midi). Abre los PR de tarea hacia `dev`, conserva `Co-Authored-By: Shannon` en los commits y verifica la autoría en GitHub. Guarda cualquier promoción a `main` para el PR autorizado de entrega.
 
-## Entrega actual
+## Referencias y mantenimiento
 
-La implementación de las fases 1 a 3 de `v0.1.0` se adelantó y la aceptación se verifica en conjunto. Verifica la compilación y el flujo correspondiente al SHA que se despliega. Registra el resultado junto al ambiente y la URL. Las instrucciones locales usan Windows con PowerShell, sin Docker. Mantén la documentación y la interfaz en español.
+- Consulta el [registro de avances](docs/registro-avances.md) para el SHA publicado y verifica la punta de `dev` antes de retomar. Usa [el backlog](backlog/README.md) para las tareas pendientes y el [changelog](CHANGELOG.md) para las versiones fijadas.
+- Distingue pruebas de compilación, pruebas sintéticas y aceptación con audio real. Registra el ambiente, URL y SHA probado.
+- Conserva `main`, `dev` y `release/*`. Antes de retirar una rama de trabajo, confirma su integración por SHA o registra la evidencia de que su propósito temporal ya se cumplió. Revisa que no tenga PR abiertos. Las instrucciones locales usan Windows con PowerShell, sin Docker. Mantén la documentación y la interfaz en español.

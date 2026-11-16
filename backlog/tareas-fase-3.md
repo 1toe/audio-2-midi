@@ -26,7 +26,7 @@ Objetivo: que CU-05 funcione y que CU-02 sume el piano roll. Duración estimada:
 - [x] T3.12 Tocar un punto mueve la reproducción a ese momento.
 
 - [x] T3.16 Añadir teclado animado con notas descendentes y conservar la línea de tiempo.
-- [x] T3.17 Generar tablatura por pista MIDI en afinación estándar y mostrar las notas que quedan fuera de la digitación.
+- [x] T3.17 Generar tablatura por pista MIDI en afinación estándar y mostrar las notas que quedan fuera de la digitación. T3.16 y T3.17 se implementaron en [`e4bac04fcf123934752e1574cdfb3d109d5871b8`](https://github.com/1toe/audio-a-midi/commit/e4bac04fcf123934752e1574cdfb3d109d5871b8).
 - [ ] T3.18 Comparar la tablatura con grabaciones y digitaciones de referencia, incluyendo acordes y arpegios.
 
 ## Cierre de la fase

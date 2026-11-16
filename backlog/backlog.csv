@@ -9,4 +9,4 @@ H7;Separar las pistas de una canción completa;Imprescindible;2;CU-04;Entrega vo
 H8;Elegir qué pistas transcribir;Imprescindible;2;CU-04;El MIDI final incluye solo las pistas marcadas.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
 H9;Ajustar la sensibilidad y regenerar;Importante;3;CU-05;Cambia el umbral de notas y la duración mínima sin volver a subir el archivo.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
 H10;Limpiar las notas;Importante;3;CU-05;Cuantiza al tempo, limita el rango a 88 teclas y funde notas repetidas. Se puede apagar.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
-H11;Ver las notas en un piano roll;Deseable;3;CU-02;Muestra las notas en el tiempo y avanza junto con la reproducción.;Implementada / por validar;389145bf7903ec98728d9a2b2d4e2eda919ec012;
+H11;Ver las notas en un piano roll;Deseable;3;CU-02;Muestra las notas en el tiempo y avanza junto con la reproducción.;Implementada / por validar;e4bac04fcf123934752e1574cdfb3d109d5871b8;
