@@ -2,6 +2,9 @@
 
 ## Sin versionar
 
+## 0.4.0 · 2026-11-16
+
+- Referencia: [`release/v0.4.0`](https://github.com/1toe/audio-a-midi/tree/release/v0.4.0).
 - Teclado con notas descendentes sincronizado con el MIDI y vista de línea de tiempo.
 - Tablatura de guitarra por pista, con tiempos, descarga de texto y aviso de notas que no caben en la digitación.
 
