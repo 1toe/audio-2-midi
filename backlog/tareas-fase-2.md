@@ -42,6 +42,8 @@ Antes de desplegar quedan abiertas dos decisiones de `docs/08-decisiones-abierta
 - [ ] T2.23 Comprobar el borrado del audio después de procesar.
 - [ ] T2.24 Pasar las 10 canciones del set y puntuar la melodía.
 - [x] T2.25 Actualizar el texto de privacidad de la página para los dos modos.
+- [x] T2.26 Permitir cancelar la carga o la separación y liberar los archivos que ya no se usan.
+- [ ] T2.27 Verificar cancelación durante la carga, en cola y durante el procesamiento. Comprobar limpieza y continuidad de la cola.
 
 ## Puerta 3
 

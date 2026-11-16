@@ -2,6 +2,8 @@
 
 ## Sin versionar
 
+- El botón Cancelar detiene la carga o la separación de una canción. Al cambiar de audio o modo, se solicita eliminar las pistas temporales.
+- Si la web no puede conectar con el servicio de separación, muestra cómo continuar con una pista aislada.
 - Claude Code importa las reglas compartidas desde `AGENTS.md`. El backlog registra el SHA de implementación y el enlace a la evidencia de aceptación.
 - Registro de licencias alineado con las dependencias directas de la web y el servidor.
 - Flujo de seguimiento con commits verificables, estado de historias y reglas compartidas para los agentes. [Registro de avances](docs/registro-avances.md).

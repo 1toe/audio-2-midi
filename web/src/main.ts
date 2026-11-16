@@ -1,5 +1,5 @@
 import './style.css'
-import { downloadStem, separate } from './api'
+import { discardJob, downloadStem, separate } from './api'
 import { readDuration } from './audio'
 import { formatTime, message, stems, type Settings, type Stem, type Track } from './model'
 import { el, ResultView, showStems } from './view'
@@ -33,7 +33,7 @@ function controls() {
   transcribe.disabled = busy || selected().length === 0
   el<HTMLButtonElement>('regenerate').disabled = busy || !result
   el<HTMLButtonElement>('download').disabled = busy || !result
-  cancel.hidden = !running || (mode === 'song' && !jobId)
+  cancel.hidden = !running
   const showConsent = mode === 'song'
   el('consent-row').hidden = !showConsent
   el('privacy').textContent = showConsent
@@ -43,9 +43,16 @@ function controls() {
 
 function clearResult() {
   session.reset()
+  const previous = jobId
   jobId = undefined
   result = undefined
+  for (const preview of selection.querySelectorAll('audio')) {
+    preview.pause()
+    preview.removeAttribute('src')
+    preview.load()
+  }
   selection.replaceChildren()
+  if (previous) void discardJob(previous).catch(() => {})
   el('stems').hidden = true
   view.clear()
 }
@@ -177,7 +184,11 @@ document.querySelectorAll<HTMLInputElement>('input[name="mode"]').forEach(input 
 })
 consent.onchange = controls
 selection.onchange = controls
-cancel.onclick = () => { stop(); status.textContent = 'Conversión cancelada.' }
+cancel.onclick = () => {
+  const separating = mode === 'song' && !jobId
+  stop()
+  status.textContent = separating ? 'Cancelación de la separación solicitada.' : 'Conversión cancelada.'
+}
 convert.onclick = () => void run(async signal => {
   if (!source) return
   if (mode === 'solo') return produce(['solo'], signal)

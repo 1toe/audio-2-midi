@@ -18,6 +18,8 @@ class Job:
     expires: float
     status: str = "uploading"
     error: str | None = None
+    cancelled: bool = False
+    task: asyncio.Task | None = None
 
     def data(self, estimate: int = 0):
         response = {"id": self.id, "status": self.status}
