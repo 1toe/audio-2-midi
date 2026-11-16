@@ -1,0 +1,10 @@
+# Entornos y dependencias
+.venv/
+node_modules/
+dist/
+
+# Audios de prueba y resultados: no se versionan
+fase-0/audios/**
+fase-0/resultados/**
+!fase-0/audios/**/
+!**/.gitkeep
