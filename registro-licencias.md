@@ -1,28 +1,27 @@
 # Registro de licencias
 
-Toda dependencia se anota aquí antes de usarla. Una licencia distinta de MIT o Apache-2.0 es señal de alerta (riesgo R7) y se revisa antes de seguir.
+Registro de dependencias directas, herramientas del entorno y modelos. Las columnas distinguen la licencia declarada por el código de las condiciones de los pesos. Las versiones directas se definen en `web/package.json`, `fase-0/requirements.txt` y `servidor/requirements.txt`.
 
-Estado al 15 de noviembre de 2026. Verificada significa leída de la API de GitHub ese día. Por confirmar significa anotada de memoria, sin revisar.
-
-| Dependencia | Uso | Fase | Licencia del código | Estado |
-| --- | --- | --- | --- | --- |
-| [Basic Pitch](https://github.com/spotify/basic-pitch) | Transcripción en Python | 0 | Apache-2.0 | Verificada |
-| [basic-pitch-ts](https://github.com/spotify/basic-pitch-ts) | Transcripción en el navegador | 1 | Apache-2.0 | Verificada |
-| [Transkun](https://github.com/Yujia-Yan/Transkun) | Alternativa para piano | Opcional | MIT | Verificada |
-| TensorFlow.js | Motor que usa basic-pitch-ts | 1 | Apache-2.0 | Por confirmar |
-| [Tone.js](https://github.com/Tonejs/Tone.js) | Sonido de piano | 1 | MIT | Por confirmar |
-| [@tonejs/midi](https://github.com/Tonejs/Midi) | Escritura del .mid | 1 | MIT | Por confirmar |
-| Vite | Proyecto web | 1 | MIT | Por confirmar |
-| Muestras de piano | Sonido del reproductor | 1 | Por definir | Falta elegir |
-| [Demucs](https://github.com/adefossez/demucs) | Separación de pistas | 2 | MIT | Por confirmar |
-| FastAPI | Servicio de separación | 2 | MIT | Por confirmar |
-| ffmpeg | Conversión de formatos | 2 | LGPL o GPL según la compilación | Por confirmar |
+| Dependencia | Uso | Licencia del código |
+| --- | --- | --- |
+| [Basic Pitch 0.4.0](https://pypi.org/project/basic-pitch/0.4.0/) | Transcripción por lote | Apache-2.0 |
+| [@spotify/basic-pitch 1.0.1](https://github.com/spotify/basic-pitch-ts/blob/v1.0.1/LICENSE) | Transcripción en el navegador | Apache-2.0 |
+| [TensorFlow.js 3.21.0](https://github.com/tensorflow/tfjs/blob/tfjs-v3.21.0/LICENSE) | Inferencia en el navegador | Apache-2.0 |
+| [midi-file 1.2.4](https://github.com/carter-thaxton/midi-file/blob/master/package.json) | Escritura MIDI | MIT según el manifiesto del paquete |
+| [Vite 6.4.1](https://github.com/vitejs/vite/blob/v6.4.1/LICENSE) | Construcción de la web | MIT |
+| [TypeScript 5.9.3](https://github.com/microsoft/TypeScript/blob/v5.9.3/LICENSE.txt) | Comprobación de tipos | Apache-2.0 |
+| [FastAPI 0.115.12](https://github.com/fastapi/fastapi/blob/0.115.12/LICENSE) | API de separación | MIT |
+| [Uvicorn 0.34.2](https://github.com/Kludex/uvicorn/blob/0.34.2/LICENSE.md) | Servidor ASGI | BSD-3-Clause |
+| [Demucs 4.0.1](https://pypi.org/project/demucs/4.0.1/) | Separación de pistas | MIT |
+| [PyTorch 2.5.1](https://github.com/pytorch/pytorch/blob/v2.5.1/LICENSE) | Inferencia de Demucs | BSD-3-Clause para el código principal. El archivo de licencia identifica componentes adicionales. |
+| [TorchAudio 2.5.1](https://github.com/pytorch/audio/blob/v2.5.1/LICENSE) | Audio de Demucs | BSD-2-Clause |
+| [FFmpeg y FFprobe](https://ffmpeg.org/legal.html) | Detección y conversión de formatos | LGPL o GPL según el binario instalado. Pendiente identificar el binario del servidor. |
+| Web Audio API | Piano sintetizado y reproducción | API del navegador |
+| [Transkun](https://github.com/Yujia-Yan/Transkun) | Alternativa opcional para piano | MIT |
 
 ## Pesos de los modelos
 
-El código abierto no garantiza que los pesos del modelo se puedan usar con fines comerciales. Se revisa por separado.
-
-| Modelo | Licencia de los pesos | Estado |
-| --- | --- | --- |
-| Basic Pitch | Por revisar | Pendiente antes de la fase 1 |
-| Demucs | Por revisar | Pendiente antes de la fase 2 |
+| Modelo | Estado |
+| --- | --- |
+| Basic Pitch (Python y navegador) | Pendiente verificar los términos de los pesos incluidos. |
+| Demucs (`htdemucs`) | Pendiente verificar los términos de los pesos descargados por el servidor. |

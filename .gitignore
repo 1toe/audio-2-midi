@@ -1,5 +1,6 @@
 # Entornos y dependencias
 .venv/
+__pycache__/
 node_modules/
 dist/
 
@@ -8,3 +9,6 @@ fase-0/audios/**
 fase-0/resultados/**
 !fase-0/audios/**/
 !**/.gitkeep
+
+# Archivos generados por la aplicación
+web/public/model/
